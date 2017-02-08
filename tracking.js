@@ -22,10 +22,10 @@
 		}
 		
 	function onFocus(){
-		initialize();		
+		initialize(false);		
 	}
 
-    function initialize() {
+    function initialize(refresh) {
         trackedtime = new Date(peptrack.EventTime);        
         locations = [{ "Latitude": peptrack.Latidue, "Longitude": peptrack.Longitude, "EventTime": peptrack.EventTime, "TrackId": peptrack.TrackId, "GroundSpeed": peptrack.GroundSpeed }];
 
@@ -39,26 +39,29 @@
 		
         getLocation();
 
-        myMap = new pepMap(peptrack.Latidue, peptrack.Longitude);
-        myMap.initialize();
+		if(refresh)
+		{
+			myMap = new pepMap(peptrack.Latidue, peptrack.Longitude);
+			myMap.initialize();		
 
-        var ctx1 = document.getElementById('pep-distance').getContext('2d');
-        odoDistance = new odometer(ctx1, {
-            height: 25,
-            digits: 4,
-            decimals: 1,
-            value: pepDistance,
-            wobbleFactor: 0
-        });
+			var ctx1 = document.getElementById('pep-distance').getContext('2d');
+			odoDistance = new odometer(ctx1, {
+				height: 25,
+				digits: 4,
+				decimals: 1,
+				value: pepDistance,
+				wobbleFactor: 0
+			});
 
-        var ctx2 = document.getElementById('pep-altitude').getContext('2d');
-        odoAltitude = new odometer(ctx2, {
-            height: 25,
-            digits: 4,
-            decimals: 1,
-            value: pepAltitude,
-            wobbleFactor: 0
-        });       
+			var ctx2 = document.getElementById('pep-altitude').getContext('2d');
+			odoAltitude = new odometer(ctx2, {
+				height: 25,
+				digits: 4,
+				decimals: 1,
+				value: pepAltitude,
+				wobbleFactor: 0
+			});
+		}		
     }   
 
     function getLocation() {        
@@ -431,6 +434,6 @@
             resetDistance();
         });
         bindPointClicks();
-        initialize();    
+        initialize(true);    
     });
 })();
