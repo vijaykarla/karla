@@ -1,4 +1,4 @@
-(function () {
+(function () {tes
     var locationTimeout;
     var distanceTimeout;
     var altitudeTimeout;
