@@ -1,0 +1,83 @@
+<html>
+<head>
+	<style>		
+		 *, *:after, *:before { margin:0; padding:0; }
+		.popdiv{margin:0; padding:15px;}
+		.node {
+			height: 10px;
+			width: 10px;
+			border-radius: 50%;
+			display:inline-block;
+			transition: all 1000ms ease;
+		}
+		
+		.divider {
+			height: 40px;
+			width: 2px;
+			margin-left: 4px;
+			transition: all 800ms ease;
+		}
+
+		li p {
+			display:inline-block;
+			margin-left: 25px;
+		}
+
+		li {
+			list-style: none;
+			line-height: 1px;
+		}
+		
+		.green{ background-color: rgba(92, 184, 92, 1) }		
+		.grey { background-color: rgba(201, 201, 201, 1); }		
+		.mystyle{margin:0px; background-color: rgba(92, 184, 92, 1); height:50%;
+
+}
+	</style>
+	<script>
+		
+		function doProgress(){	
+			var list = document.getElementById('progress');
+			var children = list.children;
+			var completed = 3;
+
+		
+			// count the number of completed nodes.
+			completed = (completed === 0) ? 1 : completed + 2;
+			if (completed > children.length) return;
+			
+			// for each node that is completed, reflect the status
+			// and show a green color!
+			for (var i = 0; i < completed; i++) {
+				children[i].children[0].classList.remove('grey');				
+				// if this child is a node and not divider, 
+				// make it shine a little more
+				if (i % 2 === 0) {
+					//children[i].children[0].classList.add('activated');
+					children[i].children[0].classList.add('green');
+				}
+				else
+				{
+					children[i].children[0].classList.add('green');
+				}
+			}		
+		}		
+	</script>
+</head>
+<body>
+	<div class="popdiv">
+		<ul id="progress">
+			<li><div class="node grey"></div><p>The First Thing!</p></li>
+			<li><div class="divider grey"><div></div></div></li>
+			<li><div class="node grey"></div><p>The Second Thing!</p></li>
+			<li><div class="divider grey"><div></div></div></li>
+			<li><div class="node grey"></div><p>The Third Thing!</p></li>
+			<li><div class="divider grey"><div class="mystyle"></div></div></li>
+			<li><div class="node grey"></div><p>The Fourth Thing!</p></li>
+			<li><div class="divider grey"><div></div></div></li>
+			<li><div class="node grey"></div><p>The Last Thing!</p></li>
+		</ul>
+	</div>
+	<script>doProgress();</script>
+</body>
+</html>
