@@ -1,0 +1,58 @@
+[
+    {
+        "Index": 0,
+        "DistanceCoverd": 100,
+        "Name": "Bengaluru",
+        "Latitude": 12.9715986,
+        "Longitude": 77.59457,
+        "Distance": 0
+    },
+    {
+        "Index": 1,
+        "DistanceCoverd": 100,
+        "Name": "Marathahalli",
+        "Latitude": 12.9584,
+        "Longitude": 77.70373,
+        "Distance": 12.9
+    },
+    {
+        "Index": 2,
+        "DistanceCoverd": 100,
+        "Name": "Nelamangala",
+        "Latitude": 13.0980377,
+        "Longitude": 77.38634,
+        "Distance": 43.6
+    },
+    {
+        "Index": 3,
+        "DistanceCoverd": 100,
+        "Name": "Kunigal",
+        "Latitude": 13.0161457,
+        "Longitude": 77.04713,
+        "Distance": 46.4
+    },
+    {
+        "Index": 4,
+        "DistanceCoverd": 30,
+        "Name": "Channarayapattana",
+        "Latitude": 12.8980427,
+        "Longitude": 76.3969,
+        "Distance": 79.4
+    },
+    {
+        "Index": 5,
+        "DistanceCoverd": 0,
+        "Name": "Hassan",
+        "Latitude": 13.0035114,
+        "Longitude": 76.1004257,
+        "Distance": 38.1
+    },
+    {
+        "Index": 6,
+        "DistanceCoverd": 0,
+        "Name": "Mangaluru",
+        "Latitude": 12.8970213,
+        "Longitude": 74.84594,
+        "Distance": 191.3
+    }
+]
