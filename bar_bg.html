@@ -12,7 +12,7 @@
 		}
 		
 		.divider {
-			height: 40px;
+			height: 25px;
 			width: 2px;
 			margin-left: 4px;
 			transition: all 800ms ease;
@@ -20,7 +20,7 @@
 
 		li p {
 			display:inline-block;
-			margin-left: 25px;
+			margin-left: 15px;
 		}
 
 		li {
@@ -28,56 +28,49 @@
 			line-height: 1px;
 		}
 		
-		.green{ background-color: rgba(92, 184, 92, 1) }		
-		.grey { background-color: rgba(201, 201, 201, 1); }		
-		.mystyle{margin:0px; background-color: rgba(92, 184, 92, 1); height:50%;
+		.green{ background-color: rgba(92, 184, 92, 1) }
+		.grey { background-color: rgba(201, 201, 201, 1); }	
 
-}
 	</style>
+	<script src="jquery-3.3.1.min.js"></script>
 	<script>
+	
+		var routeResponse = '[{"Index":0,"DistanceCoverd":100,"Name":"Bengaluru","Latitude":12.9715986,"Longitude":77.59457,"Distance":0},{"Index":1,"DistanceCoverd":100,"Name":"Marathahalli","Latitude":12.9584,"Longitude":77.70373,"Distance":12.9},{"Index":2,"DistanceCoverd":100,"Name":"Nelamangala","Latitude":13.0980377,"Longitude":77.38634,"Distance":43.6},{"Index":3,"DistanceCoverd":100,"Name":"Kunigal","Latitude":13.0161457,"Longitude":77.04713,"Distance":46.4},{"Index":4,"DistanceCoverd":30,"Name":"Channarayapattana","Latitude":12.8980427,"Longitude":76.3969,"Distance":79.4},{"Index":5,"DistanceCoverd":0,"Name":"Hassan","Latitude":13.0035114,"Longitude":76.1004257,"Distance":38.1},{"Index":6,"DistanceCoverd":0,"Name":"Mangaluru","Latitude":12.8970213,"Longitude":74.84594,"Distance":191.3}]';
 		
-		function doProgress(){	
-			var list = document.getElementById('progress');
-			var children = list.children;
-			var completed = 3;
-
-		
-			// count the number of completed nodes.
-			completed = (completed === 0) ? 1 : completed + 2;
-			if (completed > children.length) return;
-			
-			// for each node that is completed, reflect the status
-			// and show a green color!
-			for (var i = 0; i < completed; i++) {
-				children[i].children[0].classList.remove('grey');				
-				// if this child is a node and not divider, 
-				// make it shine a little more
-				if (i % 2 === 0) {
-					//children[i].children[0].classList.add('activated');
-					children[i].children[0].classList.add('green');
+		function generateRoute(){
+			var objJSON = JSON.parse(routeResponse);
+			$("#progress").html('');
+			for (var i = 0, len = objJSON.length; i < len; ++i) {
+				 var routePoint = objJSON[i];				
+				 if(i > 0){
+					if(routePoint.DistanceCoverd == 100){
+						$('#progress').append('<li><div class="divider green"></div></li>');
+					}
+					else{
+						if(routePoint.DistanceCoverd > 0){
+							$('#progress').append('<li><div class="divider grey"><div style="margin:0px; background-color: rgba(92, 184, 92, 1); height:' + routePoint.DistanceCoverd + '%;"></div></div></li>');
+						}
+						else{
+							$('#progress').append('<li><div class="divider grey"></div></li>');
+						}
+					}
+				 }
+				
+				if(routePoint.DistanceCoverd == 100){
+					$("#progress").append('<li><div class="node green"></div><p>' + routePoint.Name + '</p></li>');
 				}
-				else
-				{
-					children[i].children[0].classList.add('green');
+				else{
+					$("#progress").append('<li><div class="node grey"></div><p>' + routePoint.Name + '</p></li>');
 				}
-			}		
-		}		
+			}
+		}
 	</script>
 </head>
 <body>
 	<div class="popdiv">
-		<ul id="progress">
-			<li><div class="node grey"></div><p>The First Thing!</p></li>
-			<li><div class="divider grey"><div></div></div></li>
-			<li><div class="node grey"></div><p>The Second Thing!</p></li>
-			<li><div class="divider grey"><div></div></div></li>
-			<li><div class="node grey"></div><p>The Third Thing!</p></li>
-			<li><div class="divider grey"><div class="mystyle"></div></div></li>
-			<li><div class="node grey"></div><p>The Fourth Thing!</p></li>
-			<li><div class="divider grey"><div></div></div></li>
-			<li><div class="node grey"></div><p>The Last Thing!</p></li>
+		<ul id="progress">			
 		</ul>
 	</div>
-	<script>doProgress();</script>
+	<script>generateRoute();</script>
 </body>
 </html>
