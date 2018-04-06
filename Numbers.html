@@ -1,0 +1,78 @@
+<html>
+<head>
+	<style>		
+		.numtable{padding:0; margin:0; font-size: 100%; border: 2px solid grey;border-collapse: collapse;}
+		.numtd{color:white;font-weight: bold;background-color:black;border: 2px solid grey;}
+		.dectd{color:red;font-weight: bold;background-color:white;border: 2px solid grey;}	
+	</style>
+	<script src="jquery-3.3.1.min.js"></script>
+	<script>
+		function fillNumber(myNumber){
+			myNumber =  pepRound(myNumber, 1);
+			var strNumber = myNumber.toString();
+			if(strNumber.length > 0){			
+				$('#tdnum1').html('0');
+				$('#tdnum2').html('0');
+				$('#tdnum3').html('0');
+				$('#tdnum4').html('0');
+				$('#tddec').html('.0');
+				if(!isNaN(myNumber))
+				{
+					var numPart = strNumber;
+					var decPart = '0';
+					if(strNumber.indexOf('.') != -1){
+						var parts = strNumber.split('.');
+						numPart = parts[0];
+						decPart = parts[1];
+					}
+					var numParts = numPart.split('');
+					if(numParts.length > 0){
+						var pos = 1;
+						for(i = numParts.length -1; i >= 0; i--){
+							if(pos == 1){
+								$('#tdnum4').html(numParts[i]);
+								if(numParts[i] == '-'){
+									$('#tdnum3').html('&nbsp;&nbsp;');
+									$('#tdnum2').html('&nbsp;&nbsp;');
+									$('#tdnum1').html('&nbsp;&nbsp;');
+									break;
+								}
+							}
+							if(pos == 2){
+								$('#tdnum3').html(numParts[i]);
+								if(numParts[i] == '-'){
+									$('#tdnum2').html('&nbsp;&nbsp;');
+									$('#tdnum1').html('&nbsp;&nbsp;');
+									break;
+								}
+							}
+							if(pos == 3){
+								$('#tdnum2').html(numParts[i]);
+								if(numParts[i] == '-'){									
+									$('#tdnum1').html('&nbsp;&nbsp;');
+									break;
+								}
+							}
+							if(pos == 4)
+								$('#tdnum1').html(numParts[i]);
+							pos++;						
+						}
+						$('#tddec').html('.' + decPart);
+					}
+				}				
+			}
+		}
+		
+		function pepRound(value, precision) {
+			var multiplier = Math.pow(10, precision || 0);
+			return Math.round(value * multiplier) / multiplier;
+		}
+	</script>
+</head>
+<body>
+	<table class="numtable"><tr><td class="numtd" id="tdnum1">0</td><td class="numtd" id="tdnum2">0</td><td class="numtd" id="tdnum3">0</td><td class="numtd" id="tdnum4">0</td><td class="dectd" id="tddec">.0</td></tr></table>
+	<br/><br/><br/><br/><br/>
+	<input type="text" id="txtnum" name="number"><br/><br/>
+	<input type="button" value="ok" onclick="fillNumber($('#txtnum').val())" name="fname"><br>
+</body>
+</html>
