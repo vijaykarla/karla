@@ -1,0 +1,2 @@
+Azure SQL
+https://app.pluralsight.com/player?course=developing-dotnet-microsoft-azure-getting-started&author=scott-allen&name=dfd3d2ac-31d3-4b97-86b9-891e7b0b3578&clip=0&mode=live
