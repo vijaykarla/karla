@@ -7,4 +7,4 @@ SELECT TOP 500 LocationId, DATEADD(mi, 330, EVENTTIME) EventTime, Latitude, Long
 FROM Location WHERE TrackId = 44
 ORDER BY LocationId DESC
 
-http://valetron.in/api/v2/mysql/_table/log?api_key=7d1a4baac442ed875b1545af24f9f4312a1cfdb3fad0db096db91cf2869d17f2&fields=lat,lon,logid,devid,time,speed,server_time,pint&order=logid%20DESC&limit=100&filter=(devid=861311006352792)
+--http://valetron.in/api/v2/mysql/_table/log?api_key=7d1a4baac442ed875b1545af24f9f4312a1cfdb3fad0db096db91cf2869d17f2&fields=lat,lon,logid,devid,time,speed,server_time,pint&order=logid%20DESC&limit=100&filter=(devid=861311006352792)
