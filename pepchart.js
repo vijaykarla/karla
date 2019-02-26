@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
     var ctx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
@@ -20,12 +20,19 @@
 					15,
 					-51
 				 ],
-				 extra:[
+				 extra1:[
 					'Mysore',
 					'Bengaluru',
 					'Mangalore',
 					'Udupi',
 					'Karkala'
+				 ],
+				 extra2:[
+					'111,222',
+					'333,444',
+					'555,666',
+					'777,888',
+					'999,000'
 				 ],
 				 backgroundColor:"rgba(255, 99, 132, 0.2)",
 				 borderColor:"rgba(255, 99, 132, 1)",
@@ -53,7 +60,7 @@
                     label: function (tooltipItem, data) {
                         var label = data.datasets[tooltipItem.datasetIndex].label || '';
 						var itemIndex = tooltipItem.index;
-						var extraItem = data.datasets[tooltipItem.datasetIndex].extra[itemIndex];
+						var extraItem = data.datasets[tooltipItem.datasetIndex].extra1[itemIndex];
                         if (label) {
                             var yVal = Math.round(tooltipItem.yLabel * 100) / 100;
                             if (yVal > 0)
@@ -66,7 +73,20 @@
                         return label;
                     }
                 }
-            }
+            },
+			onClick: function(c, i) {
+				//Check for report type
+				e = i[0];
+				var itemIndex = e._index;
+				var latLong = this.data.datasets[0].extra2[itemIndex]
+				
+				console.log(e._index)
+				var x_value = this.data.labels[e._index];
+				var y_value = this.data.datasets[0].data[e._index];
+				console.log(x_value);
+				console.log(y_value);
+				console.log(latLong);
+			}
         }
     });
 });
